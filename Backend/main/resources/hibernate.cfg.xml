@@ -4,8 +4,8 @@
 		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<property name="hibernate.connection.username">Cjones3155</property>
-		<property name="hibernate.connection.password">Thecool12!</property>
+		<property name="hibernate.connection.username">*******</property>
+		<property name="hibernate.connection.password">*****</property>
 		<property name="hibernate.connection.url">jdbc:oracle:thin:@demo.ccxj9m3hbn56.us-east-1.rds.amazonaws.com:1521:ORCL</property>
 		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
 		<!-- this can be noisy in the console -->
