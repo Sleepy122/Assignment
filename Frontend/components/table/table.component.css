@@ -1,0 +1,15 @@
+#inventoryTable{
+    top: 200px;
+}
+.headbutton{
+    height: 50px;
+    width: 80px;
+    margin-left: 10px;
+}
+thead{
+    background-color: orange;
+    border:solid black 1px;
+}
+.headRow{
+    border:solid black 1px;
+}

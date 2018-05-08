@@ -1,0 +1,207 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-0">
+      <button class="headbutton btn-lg btn-dark col-offset-5" (click)="createAddForm();open(addRecord)" type="submit" *ngIf ="!showOptions">Add Record</button>
+    </div>
+    <div class="col-0">
+      <button class="headbutton btn-lg btn-dark" (click)="createEditForm();open(editRecord)" type="submit" *ngIf ="showOptions">Edit Record</button>
+    </div>
+    <div class="col-0">
+      <button class="headbutton btn-lg btn-dark" (click)="deleteItem()" type="submit" *ngIf ="showOptions">Delete Record</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-10">
+      <table id="inventoryTable" class="table">
+        <thead>
+          <tr class="headRow">
+            <th class="headRow" scope="col">
+                <label >
+                    <input type="radio" name="selectedRow" (click) = setShowOptions(false)>
+                  </label>
+            </th>
+            <th class="headRow" scope="col">Eqp Init</th>
+            <th class="headRow" scope="col">Eqp Numb</th>
+            <th class="headRow" scope="col">Stn 333</th>
+            <th class="headRow" scope="col">Stn St</th>
+            <th class="headRow" scope="col">Dest 333</th>
+            <th class="headRow" scope="col">Dest St</th>
+            <th class="headRow" scope="col">ETN TS</th>
+            <th class="headRow" scope="col">Eqp Lgth</th>
+            <th class="headRow" scope="col">Eqp Wdth</th>
+            <th class="headRow" scope="col">Eqp Weight</th>
+            <th class="headRow" scope="col">ECS ID</th>
+            <th class="headRow" scope="col">ECS Prcsd</th>
+            <th class="headRow" scope="col">Stat Cd</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dummyData">
+            <td>
+                <label >
+                  <input type="radio" name="selectedRow" (click) = "setShowOptions(true);setActiveItem(item)">
+                </label>
+            </td>
+            <td>
+              {{item.eqpInit}}
+            </td>
+            <td>
+              {{item.eqpNumb}}
+            </td>
+            <td>
+              {{item.stn333}}
+            </td>
+            <td>
+              {{item.stnSt}}
+            </td>
+            <td>
+              {{item.dest333}}
+            </td>
+            <td>
+              {{item.destSt}}
+            </td>
+            <td>
+              {{item.etnTs}}
+            </td>
+            <td>
+              {{item.eqpLgth}}
+            </td>
+            <td>
+              {{item.eqpWdth}}
+            </td>
+            <td>
+              {{item.eqpWeight}}
+            </td>
+            <td>
+              {{item.ecsId}}
+            </td>
+            <td>
+              {{item.ecsPrcsd}}
+            </td>
+            <td>
+              {{item.statCd}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<ng-template #addRecord let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Add Record</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addRecordForm">
+      <div class="form-group">
+        <label class="center-block">eqpInit:
+          <input class="form-control" formControlName="eqpInit"  maxlength="4"required/>
+          <p *ngIf="addRecordForm.errors">testing</p>
+        </label>
+        <label class="center-block">eqpNumb:
+          <input class="form-control" formControlName="eqpNumb"/>
+        </label>
+        <label class="center-block">stn333:
+          <input class="form-control" formControlName="stn333"/>
+        </label>
+        <label class="center-block">stnSt:
+          <input class="form-control" formControlName="stnSt"/>
+        </label>
+        <label class="center-block">dest333:
+          <input class="form-control" formControlName="dest333"/>
+        </label>
+        <label class="center-block">destSt:
+          <input class="form-control" formControlName="destSt"/>
+        </label>
+        <label class="center-block">etnTs:
+          <input class="form-control" formControlName="etnTs"/>
+        </label>
+        <label class="center-block">eqpLgth:
+          <input class="form-control" formControlName="eqpLgth"/>
+        </label>
+        <label class="center-block">eqpWdth:
+          <input class="form-control" formControlName="eqpWdth"/>
+        </label>
+        <label class="center-block">eqpWeight:
+          <input class="form-control" formControlName="eqpWeight"/>
+        </label>
+        <label class="center-block">ecsId:
+          <input class="form-control" formControlName="ecsId"/>
+        </label>
+        <label class="center-block">ecsPrcsd:
+          <input class="form-control" formControlName="ecsPrcsd"/>
+        </label>
+        <label class="center-block">statCd:
+          <input class="form-control" formControlName="statCd"/>
+        </label>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+      <button *ngIf="addRecordForm.valid" type="button" class="btn btn-outline-dark" (click)="addItem(addRecordForm);c('Close click')">Submit</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #editRecord let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Record</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editRecordForm">
+      <div class="form-group">
+        <label class="center-block">eqpInit:
+          <input class="form-control" formControlName="eqpInit" id ="editEqpInit" maxlength="4" required />
+          <p *ngIf="!editRecordForm.valid">testing</p>
+        </label>
+        <label class="center-block">eqpNumb:
+          <input class="form-control" formControlName="eqpNumb">
+        </label>
+        <label class="center-block">stn333:
+          <input class="form-control" formControlName="stn333">
+        </label>
+        <label class="center-block">stnSt:
+          <input class="form-control" formControlName="stnSt">
+        </label>
+        <label class="center-block">dest333:
+          <input class="form-control" formControlName="dest333">
+        </label>
+        <label class="center-block">destSt:
+          <input class="form-control" formControlName="destSt">
+        </label>
+        <label class="center-block">etnTs:
+          <input class="form-control" formControlName="etnTs">
+        </label>
+        <label class="center-block">eqpLgth:
+          <input class="form-control" formControlName="eqpLgth">
+        </label>
+        <label class="center-block">eqpWdth:
+          <input class="form-control" formControlName="eqpWdth">
+        </label>
+        <label class="center-block">eqpWeight:
+          <input class="form-control" formControlName="eqpWeight">
+        </label>
+        <label class="center-block">ecsId:
+          <input class="form-control" formControlName="ecsId">
+        </label>
+        <label class="center-block">ecsPrcsd:
+          <input class="form-control" formControlName="ecsPrcsd">
+        </label>
+        <label class="center-block">statCd:
+          <input class="form-control" formControlName="statCd">
+        </label>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+      <button *ngIf="editRecordForm.valid" type="button" class="btn btn-outline-dark" (click)="editItem(editRecordForm);c('Close click')">Submit</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
