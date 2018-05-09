@@ -26,6 +26,7 @@ public class InventoryDaoImpl implements InventoryDao {
 	}
 	
 	public void updateInventory(InventoryWrapper WrappedNewItem) {
+		//creating an instance of inventory item from my wrapper class
 		InventoryItem newItem = new InventoryItem(WrappedNewItem.eqpInit,WrappedNewItem.eqpNumb,WrappedNewItem.stn333,WrappedNewItem.stnSt,WrappedNewItem.dest333,WrappedNewItem.destSt,
 				WrappedNewItem.etnTs,WrappedNewItem.eqpLgth,WrappedNewItem.eqpWdth,WrappedNewItem.eqpWeight,WrappedNewItem.ecsId,WrappedNewItem.ecsPrcsd, WrappedNewItem.statCd);
 		Session s = HibernateUtil.getSession();
@@ -47,14 +48,11 @@ public class InventoryDaoImpl implements InventoryDao {
 		newPk = Integer.parseInt(pk);
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
-		// I am treating eqpInit as an identifier this query finds the row that matches the given name
 		Query q = s.createQuery("from InventoryItem I where I.Identifier2 = :var");
 		q.setParameter("var", newPk);
-		// There should only ever be one item in this list could add a check and thow error if there are more
 		List<InventoryItem> results = q.list();
 		System.out.println("*****");
 		System.out.println(results.get(0).toString());
-		//setting a place holder for the found item and deleting it this could be simplified
 		InventoryItem item = (InventoryItem) results.get(0);		
 		s.delete(item);
 		tx.commit();
