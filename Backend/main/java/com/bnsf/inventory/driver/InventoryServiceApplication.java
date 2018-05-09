@@ -16,12 +16,13 @@ import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 
 import com.bnsf.inventory.beans.InventoryItem;
 import com.bnsf.inventory.controller.InventoryController;
 import com.bnsf.inventory.dao.InventoryDaoImpl;
 
-// need @enable circut breaker
+@EnableCircuitBreaker
 @SpringBootApplication
 @ComponentScan(basePackageClasses = InventoryController.class)
 @EnableSwagger2
