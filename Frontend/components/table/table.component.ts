@@ -22,7 +22,7 @@ export class TableComponent implements OnInit {
   public testing:Inventory[] =[];
 
 
-  dummyData:Inventory[] = [];
+  tableData:Inventory[] = [];
   
   activeItem: Inventory = {
     identifier2:"",
@@ -97,20 +97,20 @@ export class TableComponent implements OnInit {
   addItem(){
     console.log(this.addRecordForm.value);
     this.http.createInventory(this.addRecordForm.value);
-    this.refreshDummy();
+    this.refreshTable();
     location.reload();
   }
-  setDummyData(items:Inventory[]){
+  setTableData(items:Inventory[]){
     console.log(items);
     for(let i = 0; i<items.length; i++){
       this.dummyData[i] = items[i];
     }
   }
-  refreshDummy(){
+  refreshTable(){
     this.http.getAllInventory().subscribe(result =>{
       console.log(result);
       this.testing = result;
-      this.setDummyData(this.testing);
+      this.setTableData(this.testing);
     });
   }
 
@@ -133,7 +133,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit() {
     //this.dummyData = [this.item1,this.item2];
-    this.refreshDummy();
+    this.refreshTable();
     console.log(this.addRecordForm.errors);
   }
 
