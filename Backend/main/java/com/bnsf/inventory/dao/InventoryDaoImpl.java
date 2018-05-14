@@ -33,7 +33,7 @@ public class InventoryDaoImpl implements InventoryDao {
 		 int newPk = Integer.parseInt(pk);
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
-		Query q = s.createQuery("from InventoryItem I where I.Identifier2 = :var");
+		Query q = s.createQuery("from InventoryItem I where I.identifier = :var");
 		q.setParameter("var", newPk);
 		List<InventoryItem> results = q.list();
 		System.out.println(results.get(0).toString());
