@@ -2,15 +2,34 @@ package com.bnsf.inventory.beans;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import org.springframework.stereotype.Component;
+
 @Entity
 @Table(name="Inventory")
-public class InventoryItem implements Serializable {	
+public class InventoryItem implements Serializable {
+	
+	public InventoryItem(String eqpInit, Integer eqpNumb, String stn333, String stnSt, String dest333, String destSt,
+			String etnTs, Integer eqpLgth, Integer eqpWdth, Integer eqpWeight, Integer ecsId, String ecsPrcsd, String statCd) {
+		super();
+		this.eqpInit = eqpInit;
+		this.eqpNumb = eqpNumb;
+		this.stn333 = stn333;
+		this.stnSt = stnSt;
+		this.dest333 = dest333;
+		this.destSt = destSt;
+		this.etnTs = etnTs;
+		this.eqpLgth = eqpLgth;
+		this.eqpWdth = eqpWdth;
+		this.eqpWeight = eqpWeight;
+		this.ecsId = ecsId;
+		this.ecsPrcsd = ecsPrcsd;
+		this.statCd = statCd;
+	}
+
 	@Id
     @SequenceGenerator(name="seq",sequenceName="seq")        
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq") 
 	@Column(name="Identifier2")
-	private Integer Identifier2;
+	private Integer identifier;
 
 	@Column(name="EQPINIT")
 	private String eqpInit;
@@ -53,7 +72,7 @@ public class InventoryItem implements Serializable {
 
 	@Override
 	public String toString() {
-		return "InventoryItem [Identifier12=" + Identifier2 + ", eqpInit=" + eqpInit + ", eqpNumb=" + eqpNumb
+		return "InventoryItem [Identifier12=" + identifier + ", eqpInit=" + eqpInit + ", eqpNumb=" + eqpNumb
 				+ ", stn333=" + stn333 + ", stnSt=" + stnSt + ", dest333=" + dest333 + ", destSt=" + destSt + ", etnTs="
 				+ etnTs + ", eqpLgth=" + eqpLgth + ", eqpWdth=" + eqpWdth + ", eqpWeight=" + eqpWeight + ", ecsId="
 				+ ecsId + ", ecsPrcsd=" + ecsPrcsd + ", statCd=" + statCd + "]";
@@ -172,23 +191,5 @@ public class InventoryItem implements Serializable {
 		super();
 	}
 	
-
-	public InventoryItem(String eqpInit, Integer eqpNumb, String stn333, String stnSt, String dest333, String destSt,
-			String etnTs, Integer eqpLgth, Integer eqpWdth, Integer eqpWeight, Integer ecsId, String ecsPrcsd, String statCd) {
-		super();
-		this.eqpInit = eqpInit;
-		this.eqpNumb = eqpNumb;
-		this.stn333 = stn333;
-		this.stnSt = stnSt;
-		this.dest333 = dest333;
-		this.destSt = destSt;
-		this.etnTs = etnTs;
-		this.eqpLgth = eqpLgth;
-		this.eqpWdth = eqpWdth;
-		this.eqpWeight = eqpWeight;
-		this.ecsId = ecsId;
-		this.ecsPrcsd = ecsPrcsd;
-		this.statCd = statCd;
-	}
 
 }
